@@ -1,0 +1,32 @@
+{
+  "name": "clinicserverv1",
+  "version": "1.0.0",
+  "engines": {
+    "node": "16.20.2"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "adm-zip": "^0.5.10",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "dockerode": "^4.0.0",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "fs-extra": "^11.2.0",
+    "mongoose": "^8.2.4",
+    "multer": "^1.4.5-lts.1",
+    "path": "^0.12.7"
+  },
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

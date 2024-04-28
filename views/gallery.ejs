@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Gaussian Splatting Gallery</title>
+    <link rel="stylesheet" href="/webviewer/gallery_style.css">
+</head>
+<body>
+<h1>3D Gaussian Splats WebViewer</h1>
+<!----------- Gallery View ------------->
+<div id="gallery">
+    <div class="container">
+       <div class="gallery-list">
+            <!-----Placeholder for gallery items-->
+            {{galleryItems}}
+       </div>  
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var items = document.querySelectorAll('.item');
+        items.forEach(function(item) {
+            var image = item.querySelector('.preview-image');
+            var video = item.querySelector('.video');
+            var timeoutId;
+    
+            item.addEventListener('mouseover', function() {
+                timeoutId = setTimeout(function() {
+                    image.style.display = 'none';
+                    video.style.display = 'block';
+                    video.play();
+                }, 250); // Delay of 0.5 seconds
+            });
+    
+            item.addEventListener('mouseout', function() {
+                clearTimeout(timeoutId);
+                video.pause();
+                video.currentTime = 0;
+                video.style.display = 'none';
+                image.style.display = 'block';
+            });
+        });
+    });
+</script>
+</body> 
+</html> 

@@ -1,0 +1,196 @@
+[
+  {
+    "id": 1,
+    "title": "Atwood Chair",
+    "imagePath": "/webviewer/images/Atwood-chair.png",
+    "splatPath": "/public/splat/atwood_chair/output.splat",
+    "videoPath": "/model_output/post_render/purpleChair-1/output_video.mp4",
+    "boundingBoxPath": "/boundingbox_folder/purpleChair-1/model_boundingbox.json"
+  },
+  {
+    "id": 2,
+    "title": "Clinic Chair",
+    "imagePath": "/webviewer/images/Clinic-chair.png",
+    "splatPath": "/public/splat/clinic_chair/output.splat",
+    "videoPath": "/model_output/post_render/purpleChair-1/output_video.mp4",
+    "boundingBoxPath": "/boundingbox_folder/purpleChair-1/model_boundingbox.json"
+  },
+  {
+    "id": 3,
+    "title": "ericPoggies",
+    "imagePath": "/model_output/post_processing/ericPoggies/input/1709613234964-49.png",
+    "splatPath": "public/splat/ericPoggies/output.splat",
+    "videoPath": "/model_output/post_render/ericPoggies/output_video.mp4",
+    "boundingBoxPath": "/boundingbox_folder/ericPoggies/model_boundingbox.json"
+  },
+  {
+    "id": 4,
+    "title": "ericPoggies",
+    "imagePath": "/model_output/post_processing/ericPoggies/input/1709613234964-49.png",
+    "splatPath": "public/splat/ericPoggies/output.splat",
+    "videoPath": "/model_output/post_render/ericPoggies/output_video.mp4",
+    "boundingBoxPath": "/boundingbox_folder/ericPoggies/model_boundingbox.json"
+  },
+  {
+    "id": 5,
+    "title": "purpleChair",
+    "imagePath": "/model_output/post_processing/purpleChair/input/0.png",
+    "splatPath": "public/splat/purpleChair/output.splat",
+    "videoPath": "/model_output/post_render/purpleChair/output_video.mp4",
+    "boundingBoxPath": "/boundingbox_folder/purpleChair/model_boundingbox.json"
+  },
+  {
+    "id": 6,
+    "title": "ericPoggies",
+    "imagePath": "/model_output/post_processing/ericPoggies/input/1709613234964-49.png",
+    "splatPath": "public/splat/ericPoggies/output.splat",
+    "videoPath": "/model_output/post_render/ericPoggies/output_video.mp4",
+    "boundingBoxPath": "/boundingbox_folder/ericPoggies/model_boundingbox.json"
+  },
+  {
+    "id": 7,
+    "title": "purpleChair-1",
+    "imagePath": "/model_output/post_processing/purpleChair-1/input/0.png",
+    "splatPath": "public/splat/purpleChair-1/output.splat",
+    "videoPath": "/model_output/post_render/purpleChair-1/output_video.mp4",
+    "boundingBoxPath": "/boundingbox_folder/purpleChair-1/model_boundingbox.json"
+  },
+  {
+    "id": 8,
+    "title": "blackChair",
+    "imagePath": "/model_output/post_processing/blackChair/input/0.png",
+    "splatPath": "public/splat/blackChair/output.splat",
+    "videoPath": "/model_output/post_render/blackChair/output_video.mp4",
+    "boundingBoxPath": "/boundingbox_folder/blackChair/model_boundingbox.json"
+  },
+  {
+    "id": 9,
+    "title": "joshuaTestingPoggies",
+    "imagePath": "/model_output/post_processing/joshuaTestingPoggies/input/0.png",
+    "splatPath": "public/splat/joshuaTestingPoggies/output.splat",
+    "videoPath": "/model_output/post_render/joshuaTestingPoggies/output_video.mp4",
+    "boundingBoxPath": "/boundingbox_folder/joshuaTestingPoggies/model_boundingbox.json"
+  },
+  {
+    "id": 10,
+    "title": "joshuaTestingPoggies",
+    "imagePath": "/model_output/post_processing/joshuaTestingPoggies/input/0.png",
+    "splatPath": "public/splat/joshuaTestingPoggies/output.splat",
+    "videoPath": "/model_output/post_render/joshuaTestingPoggies/output_video.mp4",
+    "boundingBoxPath": "/boundingbox_folder/joshuaTestingPoggies/model_boundingbox.json"
+  },
+  {
+    "id": 11,
+    "title": "testing2",
+    "imagePath": "/model_output/post_processing/testing2/input/0.png",
+    "splatPath": "public/splat/testing2/output.splat",
+    "videoPath": "/model_output/post_render/testing2/output_video.mp4",
+    "boundingBoxPath": "/boundingbox_folder/testing2/model_boundingbox.json"
+  },
+  {
+    "id": 11,
+    "title": "testing3",
+    "imagePath": "/model_output/post_processing/testing3/input/0.png",
+    "splatPath": "public/splat/testing3/output.splat",
+    "videoPath": "/model_output/post_render/testing3/output_video.mp4",
+    "boundingBoxPath": "/boundingbox_folder/testing3/model_boundingbox.json"
+  },
+  {
+    "id": 4,
+    "title": "testing9",
+    "imagePath": "/model_output/post_processing/testing9/input/0.png",
+    "splatPath": "public/splat/testing9/output.splat",
+    "videoPath": "/model_output/post_render/testing9/output_video.mp4",
+    "boundingBoxPath": "/boundingbox_folder/testing9/model_boundingbox.json"
+  },
+  {
+    "id": 1,
+    "title": "testing4",
+    "imagePath": "/model_output/post_processing/testing4/input/0.png",
+    "splatPath": "public/splat/testing4/output.splat",
+    "videoPath": "/model_output/post_render/testing4/output_video.mp4",
+    "boundingBoxPath": "/boundingbox_folder/testing4/model_boundingbox.json"
+  },
+  {
+    "id": 2,
+    "title": "testing5",
+    "imagePath": "/model_output/post_processing/testing5/input/0.png",
+    "splatPath": "public/splat/testing5/output.splat",
+    "videoPath": "/model_output/post_render/testing5/output_video.mp4",
+    "boundingBoxPath": "/boundingbox_folder/testing5/model_boundingbox.json"
+  },
+  {
+    "id": 3,
+    "title": "testing6",
+    "imagePath": "/model_output/post_processing/testing6/input/0.png",
+    "splatPath": "public/splat/testing6/output.splat",
+    "videoPath": "/model_output/post_render/testing6/output_video.mp4",
+    "boundingBoxPath": "/boundingbox_folder/testing6/model_boundingbox.json"
+  },
+  {
+    "id": 4,
+    "title": "testing9",
+    "imagePath": "/model_output/post_processing/testing9/input/0.png",
+    "splatPath": "public/splat/testing9/output.splat",
+    "videoPath": "/model_output/post_render/testing9/output_video.mp4",
+    "boundingBoxPath": "/boundingbox_folder/testing9/model_boundingbox.json"
+  },
+  {
+    "id": 4,
+    "title": "testing7",
+    "imagePath": "/model_output/post_processing/testing7/input/0.png",
+    "splatPath": "public/splat/testing7/output.splat",
+    "videoPath": "/model_output/post_render/testing7/output_video.mp4",
+    "boundingBoxPath": "/boundingbox_folder/testing7/model_boundingbox.json"
+  },
+  {
+    "id": 4,
+    "title": "testing9",
+    "imagePath": "/model_output/post_processing/testing9/input/0.png",
+    "splatPath": "public/splat/testing9/output.splat",
+    "videoPath": "/model_output/post_render/testing9/output_video.mp4",
+    "boundingBoxPath": "/boundingbox_folder/testing9/model_boundingbox.json"
+  },
+  {
+    "id": "661c6d0595dde0273640de93",
+    "title": "testing11",
+    "imagePath": "/model_output/post_processing/testing11/input/0.png",
+    "splatPath": "public/splat/testing11/output.splat",
+    "videoPath": "/model_output/post_render/testing11/output_video.mp4"
+  },
+  {
+    "id": "661c6d0595dde0273640de93",
+    "title": "testing11",
+    "imagePath": "/model_output/post_processing/testing11/input/0.png",
+    "splatPath": "public/splat/testing11/output.splat",
+    "videoPath": "/model_output/post_render/testing11/output_video.mp4"
+  },
+  {
+    "id": "661c8297892da50d0f58c69b",
+    "title": "testing12",
+    "imagePath": "/model_output/post_processing/testing12/input/0.png",
+    "splatPath": "public/splat/testing12/output.splat",
+    "videoPath": "/model_output/post_render/testing12/output_video.mp4"
+  },
+  {
+    "id": "661ce744bfcbfb5d4ca30b66",
+    "title": "testing13",
+    "imagePath": "/model_output/post_processing/testing13/input/0.png",
+    "splatPath": "public/splat/testing13/output.splat",
+    "videoPath": "/model_output/post_render/testing13/output_video.mp4"
+  },
+  {
+    "id": "661ecbdaceebb82c1dc6d522",
+    "title": "Clinic_Chair",
+    "imagePath": "/model_output/post_processing/Clinic_Chair/input/0.png",
+    "splatPath": "public/splat/Clinic_Chair/output.splat",
+    "videoPath": "/model_output/post_render/Clinic_Chair/output_video.mp4"
+  },
+  {
+    "id": "661ecfce1fb7d4cd5e665b98",
+    "title": "Purple_Chair",
+    "imagePath": "/model_output/post_processing/Purple_Chair/input/0.png",
+    "splatPath": "public/splat/Purple_Chair/output.splat",
+    "videoPath": "/model_output/post_render/Purple_Chair/output_video.mp4"
+  }
+]

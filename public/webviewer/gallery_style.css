@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    background: #ebebeb;
+}
+h1 {
+    /* background: #080808; */
+    color: #1f1f1f;
+    text-align: center;
+    margin-top: 3%;
+    font-size: 50px;
+}
+h2.item-title{
+    color: #1f1f1f;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 10px;
+}
+.container{
+    padding: 10px 10%;
+}
+/* ---------- gallery ----------- */
+#gallery {
+    padding: 30px, 0; 
+}
+.gallery-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 40px;
+    margin-top: 50px;
+}
+.item{
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.item a{
+    color: #1f1f1f;
+    font-size: 20px;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+}
+.item a:hover {
+    color: rgb(158, 113, 231);
+  }
+
+/* .item img{
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    margin-top: 10px;
+} */
+
+.media-container {
+    position: relative;
+    overflow: hidden;
+    /* height: 200px; */
+    width: 100%;
+    padding-top: 100%;  /* 1:1 (W:H) ASPECT RATIO (H/W * 100%) */
+}
+
+.preview-image,
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px; /* Match the border-radius of the images */
+    object-fit: cover; /* This ensures the video covers the item area */
+}
+
+.video {
+    display: none; /* Initially hide the video */
+}
+  

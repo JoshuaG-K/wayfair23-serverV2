@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Images Upload</title>
+</head>
+
+<body>
+
+    <!-- <h2> Upload Splat Name </h2>
+    <p> Currently only using this to test out the camera-path creation</p>
+    <p> Only use this for uploading splat names of already made splats</p>
+    <form action="/upload_splat_name" method="POST">
+        <input type="text" id="splatName" name="splatName" />
+        <button type="submit">Upload Splat Name</button>
+    </form>
+    
+    <h2> Train Model </h2>
+    <p> Currently only using this to test out the camera-path creation</p>
+    <form action="/train" method="POST">
+        <button name="train" type="submit">Train Model</button>
+    </form> -->
+
+
+    <h2> Model Input Names </h2>
+    <% splatNameList.forEach(function(item) { %>
+        <p>
+            <%= item %>
+        </p>
+        <% }); %>
+
+
+            <h1> Zip Upload</h1>
+            
+    <form id="uploadForm" action="/upload_device_data" method="POST" enctype="multipart/form-data">
+        <label for="fileInput">Select .zip File:</label>
+        <input type="file" id="fileInput" name="files" accept=".zip"><br><br>
+        <label for="splatNameInput">Splat Name:</label>
+        <input type="text" id="splatNameInput" name="splatName"><br><br>
+        <button type="submit">Upload</button>
+    </form>
+</body>
+
+</html>

@@ -16,6 +16,6 @@ node_modules
 
 *.zip
 
-public/*.png
+*.png
 
 *.mp4

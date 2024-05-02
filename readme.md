@@ -5,26 +5,26 @@
 #### Building Docker images for Server Pipeline
 The server provides 3 Docker images for each of the preprocessing, training, and rendering steps, but you will need to build these Docker images in order to run the server.
 
-In the directory `/home/hmc-cs/Documents/ClinicServerV1/Dockerfiles/Preprocess_Dockerfile`, build with
+In the directory [`Dockerfiles/Preprocess_Dockerfile`](./Dockerfiles/Preprocess_Dockerfile), build with
 ```bash
 sudo docker build -t preprocess .
 ```
 
-In the directory `/home/hmc-cs/Documents/ClinicServerV1/Dockerfiles/Train_Dockerfile`, build with
+In the directory [`Dockerfiles/Train_Dockerfile`](./Dockerfiles/Train_Dockerfile), build with
 ```bash
 sudo docker build -t train .
 ```
 
-In the directory `/home/hmc-cs/Documents/ClinicServerV1/Dockerfiles/Render_Dockerfile`, build with
+In the directory [`Dockerfiles/Render_Dockerfile`](./Dockerfiles/Render_Dockerfile), build with
 ```bash
 sudo docker build -t nerfstudio .
 ```
 #### Nerfstudio with Gaussian Splatting
 Outside of the server pipeline, you may wish to manually view or render Gaussian Splats for testing purposes. 
 
-We recommend that you put any data you want to mount into the Docker environment into the folder `/nerfstudio_gaussviewer/nerfstudio`.
+We recommend that you put any data you want to mount into the Docker environment into the [`nerfstudio_gaussviewer/nerfstudio`](public/nerfstudio_gaussviewer/nerfstudio) folder.
 
-From the directory `~/nerfstudio_gaussviewer`, enter the Docker environment with the following command:
+From the directory [`public/nerfstudio_gaussviewer`](public/nerfstudio_gaussviewer), enter the Docker environment with the following command:
 ```bash
 sudo docker run --gpus all -p 7007:7007 --rm -it -v /home/hmc-cs/nerfstudio_gaussviewer:/nerfstudio_gaussviewer --shm-size=12gb nerfstudio
 ```
@@ -39,26 +39,27 @@ Once this is done, you are ready to use any viewer or render commands.
 
 ##### Viewing or rendering NeRFs
 We recommend using [Nerfstudio Documentation](https://docs.nerf.studio/reference/cli/index.html) as reference for working with Neural Radiance Fields.
+
 ##### Viewing splats
 The generic viewer command is as follows:
 ```bash
 python nerfstudio/scripts/gaussian_splatting/run_viewer.py --model-path <data path to Gaussian Splatting folder>
 ```
 The terminal will then print out a link to the viewer which can be opened with your web browser.
-![[viewer_link.png]]
+![](images/viewer_link.png "Screenshot of console link to the viewer")
 
 A few sample datasets are provided with the following commands.
-![[atwood-chair-medium-viewer.png]]
+![](images/atwood-chair-medium-viewer.png "Atwood chair medium in viewer")
 ```bash
 python nerfstudio/scripts/gaussian_splatting/run_viewer.py --model-path data/atwood-chair-medium
 ```
 
-![[eric-clinic-chair-viewer.png]]
+![](images/eric-clinic-chair-viewer.png "Eric clinic chair in viewer")
 ```bash
 python nerfstudio/scripts/gaussian_splatting/run_viewer.py --model-path data/eric-clinic-chair-trained-output
 ```
 
-![[testing6-viewer.png]]
+![](images/testing6-viewer.png "Testing6 in viewer")
 ```
 python nerfstudio/scripts/gaussian_splatting/run_viewer.py --model-path data/testing6
 ```
@@ -102,6 +103,8 @@ The depth images are copied over from the unzipped .zip file into the folder `pu
 
 ### Computation
 The server runs three main steps to transform our input images into a 3D gaussian splat and a render of this splat. These steps are referred to as preprocess, train, and render.
+
+![](images/dockerfig.png "Figure showing the Docker modules in server pipeline")
 
 #### Preprocess Step
 First we have the preprocessing step which takes the input images in the folder `public/uploads/model_input/<splatName>/input` and runs them through COLMAPs structure from motion script to create output folders and files that are used as input to 3D gaussian splatting. Note that the input images must be in a folder named `input` for the COLMAP function to work. This process is primarly done in the `runPreprocessCommand(<splatName>)` function. 

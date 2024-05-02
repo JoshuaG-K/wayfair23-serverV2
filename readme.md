@@ -5,26 +5,26 @@
 #### Building Docker images for Server Pipeline
 The server provides 3 Docker images for each of the preprocessing, training, and rendering steps, but you will need to build these Docker images in order to run the server.
 
-In the directory `/home/hmc-cs/Documents/ClinicServerV1/Dockerfiles/Preprocess_Dockerfile`, build with
+In the directory [`Dockerfiles/Preprocess_Dockerfile`](./Dockerfiles/Preprocess_Dockerfile), build with
 ```bash
 sudo docker build -t preprocess .
 ```
 
-In the directory `/home/hmc-cs/Documents/ClinicServerV1/Dockerfiles/Train_Dockerfile`, build with
+In the directory [`Dockerfiles/Train_Dockerfile`](./Dockerfiles/Train_Dockerfile), build with
 ```bash
 sudo docker build -t train .
 ```
 
-In the directory `/home/hmc-cs/Documents/ClinicServerV1/Dockerfiles/Render_Dockerfile`, build with
+In the directory [`Dockerfiles/Render_Dockerfile`](./Dockerfiles/Render_Dockerfile), build with
 ```bash
 sudo docker build -t nerfstudio .
 ```
 #### Nerfstudio with Gaussian Splatting
 Outside of the server pipeline, you may wish to manually view or render Gaussian Splats for testing purposes. 
 
-We recommend that you put any data you want to mount into the Docker environment into the folder `/nerfstudio_gaussviewer/nerfstudio`.
+We recommend that you put any data you want to mount into the Docker environment into the [`nerfstudio_gaussviewer/nerfstudio`](public/nerfstudio_gaussviewer/nerfstudio) folder.
 
-From the directory `~/nerfstudio_gaussviewer`, enter the Docker environment with the following command:
+From the directory [`public/nerfstudio_gaussviewer`](public/nerfstudio_gaussviewer), enter the Docker environment with the following command:
 ```bash
 sudo docker run --gpus all -p 7007:7007 --rm -it -v /home/hmc-cs/nerfstudio_gaussviewer:/nerfstudio_gaussviewer --shm-size=12gb nerfstudio
 ```
@@ -39,26 +39,27 @@ Once this is done, you are ready to use any viewer or render commands.
 
 ##### Viewing or rendering NeRFs
 We recommend using [Nerfstudio Documentation](https://docs.nerf.studio/reference/cli/index.html) as reference for working with Neural Radiance Fields.
+
 ##### Viewing splats
 The generic viewer command is as follows:
 ```bash
 python nerfstudio/scripts/gaussian_splatting/run_viewer.py --model-path <data path to Gaussian Splatting folder>
 ```
 The terminal will then print out a link to the viewer which can be opened with your web browser.
-![[viewer_link.png]]
+![](images/viewer_link.png "Screenshot of console link to the viewer")
 
 A few sample datasets are provided with the following commands.
-![[atwood-chair-medium-viewer.png]]
+![](images/atwood-chair-medium-viewer.png "Atwood chair medium in viewer")
 ```bash
 python nerfstudio/scripts/gaussian_splatting/run_viewer.py --model-path data/atwood-chair-medium
 ```
 
-![[eric-clinic-chair-viewer.png]]
+![](images/eric-clinic-chair-viewer.png "Eric clinic chair in viewer")
 ```bash
 python nerfstudio/scripts/gaussian_splatting/run_viewer.py --model-path data/eric-clinic-chair-trained-output
 ```
 
-![[testing6-viewer.png]]
+![](images/testing6-viewer.png "Testing6 in viewer")
 ```
 python nerfstudio/scripts/gaussian_splatting/run_viewer.py --model-path data/testing6
 ```
@@ -103,6 +104,8 @@ The depth images are copied over from the unzipped .zip file into the folder `pu
 ### Computation
 The server runs three main steps to transform our input images into a 3D gaussian splat and a render of this splat. These steps are referred to as preprocess, train, and render.
 
+![](images/dockerfig.png "Figure showing the Docker modules in server pipeline")
+
 #### Preprocess Step
 First we have the preprocessing step which takes the input images in the folder `public/uploads/model_input/<splatName>/input` and runs them through COLMAPs structure from motion script to create output folders and files that are used as input to 3D gaussian splatting. Note that the input images must be in a folder named `input` for the COLMAP function to work. This process is primarly done in the `runPreprocessCommand(<splatName>)` function. 
 
@@ -111,7 +114,7 @@ We save the output of this step into the folder `public/model_output/post_prepro
 #### Training
 Next, we use the output of our preprocessing step in our training step. This process is primarly done in the `runTrainCommand(<splatName>)` function. It first starts by mounting the preprocessed output folder into a docker container and then running the 3D gaussian splatting model on this folder while inside the docker container. We then save the output of the model to the server file system in the folder `public/model_output/post_train/`. 
 
-Inside of this folder there is a `point_cloud.ply` file that contains the splat content and a `cameras.json` file that contains the camera pose for each image in the model's frame. We use the `cameras.json` file and the `app_camera_poses.json` file (sent to us from the iPad) find a 4x4 transformation matrix between the app's coordinate frame and the model's coordinate frame. We then use this matrix to transform the bounding box from the app's frame (which is in the boundingbox.json) to the model's frame. We store the model's bounding box in `public/boundingbox_folder/<splatName>/model_boundingbox.json`. This is done with the script found at `public/scripts/get_bounding_box_model_frame.py`. This bounding box is used to cull the background splats that aren't in the bounding box. The culling is done with the script at `public/scripts/ply_cull.py`. We overwrite the original splat file name (which is `point_cloud.ply`) with the culled splats. However, we save the original splats as the file `original_point_cloud.ply`. 
+Inside of this folder there is a `point_cloud.ply` file that contains the splat content and a cameras.json file that contains the camera pose for each image in the model's frame. We use the `cameras.json` file and the `app_camera_poses.json` file (sent to us from the iPad) find a 4x4 homography matrix between the app's coordinate frame and the model's coordinate frame. We then use this matrix to transform the bounding box in the app's frame (which is in the boundingbox.json) to be a bounding box in the model's frame. We store the model's bounding box in `public/boundingbox_folder/<splatName>/model_boundingbox.json`. This is done with the script found at `public/scripts/get_bounding_box_model_frame.py`. This bounding box is used to cull the background splats that aren't in the bounding box. The culling is done with the script at `public/scripts/ply_cull.py`, which is documented [here](public/scripts/ply_cull_documentation.md). We overwrite the original splat file name (which is `point_cloud.ply`) with the culled splats. However, we save the original splats as the file `original_point_cloud.ply`. 
 
 We also create a camera path file that will let us render a video of the splat. We do this by using the script found at `public/scripts/get_camera_poses.py`.This camera path file overwrites the file cameras.json because the 3rd party method we use to create the video does so with the cameras.json file. However, we save the original cameras.json content as original_cameras.json in the same directory.
 

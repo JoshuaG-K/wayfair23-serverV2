@@ -148,7 +148,6 @@ Here's a description of all the features we have implemented, adding on from the
     2. Link to webpage
     3. Image and Video Preview
 2. Reset View
-3. 
 
 ## Active Bugs
 1. Video preview

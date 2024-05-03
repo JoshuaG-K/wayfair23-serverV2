@@ -149,7 +149,7 @@ The Mongo database is used to keep track of all of the filepaths necessary to ac
 ## File System
 Below are the files and folders relevant to running the server (not including the webviewer)
 ```
-ClinicServerV2
+server-code
 │---README.md
 │---server.js    
 │
@@ -183,23 +183,26 @@ ClinicServerV2
 To visualize the radiance fields, we chose to render them on a website since it's been proven that 3D Gaussian Splats can be rendered on websites in real-time. Upon doing research, we found an open source example from [antimatter15/splat](https://github.com/antimatter15/splat) that used WebGL to implement a real-time renderer. We based the rest of our WebViewer from this (commit at time of forking:`b2cf38c`).
 
 From this, we created a gallery page that would allow the user to quickly preview all 3D Gaussian Splats (shorthand is *splat*) that our server has created. For each splat, we display a title, a link to a webpage that will render the splat (based on the antimatter15 splat project), and a preview image. 
-![Gallery View](/images/gallery.png "Gallery View")
+![Gallery View](documentation_images/gallery.png "Gallery View")
 
 If the user clicks the "Closer Look" text, it will bring them to a webpage that loads the corresponding 3D Gaussian Splat, and the user can use their mouse, keyboard, or trackpad to alter the angle they're viewing the splat.
-![Splat View](/images/splat_view.png "Splat View")
+![Splat View](documentation_images/splat_view.png "Splat View")
+
+To run the webviewer, you must start the server as described above. 
 
 ## File Structure and File Description
 These are the files relevant to the webviewer. 
 ```
-ClinicServerV2
+server-code
 │---README.md
 │---server.js    
 │
 └───public
+│   │---main.js
+│   │
 │   └───webviewer
 │       │---gallery_style.css
 │       │---LICENSE
-│       │---main.js
 │       │---README.md
 │       │---style.css
 └───views
@@ -209,30 +212,29 @@ ClinicServerV2
 
 Here is a high-level description of each file and its relevance to the webviewer:
 
-1. `ClinicServerV2/README.md`: 
-2. `ClinicServerV2/server.js`: 
-3. `ClinicServerV2/public/webviewer/gallery_style.css`:
-4. `ClinicServerV2/public/webviewer/LICENSE`:
-5. `ClinicServerV2/public/webviewer/main.js`:
-6. `ClinicServerV2/public/webviewer/README.md`:
-7. `ClinicServerV2/views/gallery.ejs`:
-8. `ClinicServerV2/views/index.ejs`:
+1. `server-code/README.md`: It's this file! This gives a high-level overview of the webviewer, the features we added, any known bugs, and future work. 
+2. `server-code/server.js`: When this file is run, it starts up the webviewer and can be viewed on this link: http://osiris.cs.hmc.edu:15002/webviewer/. This file goes through the database to dynamically make a webpage for each splat and fill the HTML content related to each splat on the gallery page (title, link to webpage that renders splat, preview image, rendered 360 degree video of splat).
+3. `server-code/public/main.js`: This is the javascript code that's running in the background on a page that renders the splat (`index.ejs`). This controls the camera views, the keyboard/mouse controls, and renders the splat (WebGL). 
+4. `server-code/public/webviewer/gallery_style.css`: This is the CSS style for the `gallery.ejs` file.
+5. `server-code/public/webviewer/LICENSE`: This is the license from the Antimatter15 project.
+6. `server-code/public/webviewer/README.md`: This has more detailed information on the files in `server-code/public/webviewer/`.
+7. `server-code/views/gallery.ejs`: This holds the HTML template for the gallery page of webviewer.
+8. `server-code/views/index.ejs`: This holds the HTML code for the webpages that render the webviewer. 
 
 ## Features
 Here's a description of all the features we have implemented, adding on from the antimatter15 splat repository. 
 
-1. Dynamically form Gallery View and individual webpages from MongoDB database.
-2. Gallery View
-    1. Title
-    2. Link to webpage
-    3. Image and Video Preview
-2. Reset View
+1. **Dynamically form Gallery View and individual webpages from Mongo database**: This is done in the `server-code/server.js` file. To form all the HTML content for the webviewer that accurately represents all the splats we've created, we do two things. First, we store all the information related to the splats in a Mongo database. Second, when we run the server, the `server.js` file goes through each item in the Mongo database, and it creates a webpage using the HTML template in `index.ejs` and fills the gallery items in `gallery.ejs`. For the `index.ejs`, the server passes in the `splatPath` of the splat and the `main.js` file uses the path to download the splat file. 
+2. **Gallery View**: The goal of the gallery view is to allow the user to quickly preview all the items we've created splats of. As mentioned above, we use the database to dynamically fill the gallery. Each item in the gallery consists of the title, link to webpage with splat, preview image, and video of splat (360 degree generated by server). One thing to note is that only the image or video will be shown (not both). In the `gallery.ejs`, there's a script that checks if the user's mouse has hovered over the image. If it has for more than 0.25 seconds, it will stop showing the image and show the video instead. 
 
-## Active Bugs
-1. Video preview
+3. **Reset View**: When interacting wih the splat in the webviewer, it's possible that the user may lose sight of the splat or end up in some convoluted position/view. As a result, we added a reset view feature, where there user can either press the "Reset View" button in the top right corner or press `r`. One thing to note is that in the orignal antimatter project, they have a carousel feature that's initially enabled (performs some sort of orbiting motion around the splat), and when we reset the view, we also start the carousel again.
+
+## Known Bugs
+1. Video preview: One bug we've noticed occasionally is that when the user's mouse hovers over the preview image, it will start to play the video instead, but then quickly show the image, and then continue playing the video. If the user hovers in the rectangular region that encapsulates the title, link and image but not over the image, this behavior does not occur. 
 
 ## Future Work
-1. Adjust navigation
-2. Improve UI
-3. Search bar
-4. Save multiple splats and do a side by side comparison
+1. **Adjust navigation**: One thing we noticed when changing the camera angle was that it was easy to end up in a strange angle where it was hard to view the splat. We did try to explore a more intuitive navigation system that was similar to the navigation style found here: https://gsplat.tech/amethyst/. This works by keeping the camera pointed at the center of the object and when the user drags their mouse, the camera will orbit around the center. The user can zoom in and out on the center, and they can also select a new center by click on the screen where they want the new center to be. Unfortunately, when we tested out how to point the camera to the center of the object using the `model_boundingbox.json` information, we weren't successful. Due to lack of time, we weren't able to pursue further exploration. However, we believe improving the navigation would help improve the user experience.
+2. **Improve UI**: We focused on implementing the core features above, so not much time was spent in making the UI aesthetic. 
+3. **Search bar**: As more splats get added to the database, we may want some way to search for a specific splat or filter for certain splats based on tags we can add to the splats. 
+4. **Save multiple splats and do a side by side comparison**: Before making the webviewer, we did some brainstorming on how we could visualize the splats. This became a stretch goal we weren't able to achieve but one idea we had was to allow the user to save multiple splats (similar to adding to a liked list), and choose 2 to compare side by side. This would allow easier comparison of products. Since we have the suppliers place a bounding box around the objects and we successfully remove most of the background, we can use the bottom plane of the bounding box to act as the "floor" and have the splats vertically aligned to the same ground plane. This would allow us to do things like compare height. Here's a screenshot from the brainstorm.
+![Brainstorm](documentation_images/brainstorm.png "Brainstorm")

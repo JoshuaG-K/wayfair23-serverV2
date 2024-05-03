@@ -1,3 +1,5 @@
+// This is the original main.js file from the Antimatter repository
+// We do NOT use in our server
 let cameras = [
     {
         id: 0,

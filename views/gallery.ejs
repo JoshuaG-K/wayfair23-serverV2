@@ -12,10 +12,12 @@
     <div class="container">
        <div class="gallery-list">
             <!-----Placeholder for gallery items-->
+            <!-----Server creates HTML for each gallery item based on database-->
             {{galleryItems}}
        </div>  
     </div>
 </div>
+<!--Script for video preview to play when user's mouse hovers over image in a gallery item-->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var items = document.querySelectorAll('.item');
@@ -29,7 +31,7 @@
                     image.style.display = 'none';
                     video.style.display = 'block';
                     video.play();
-                }, 250); // Delay of 0.5 seconds
+                }, 250); // Delay of 0.25 seconds
             });
     
             item.addEventListener('mouseout', function() {

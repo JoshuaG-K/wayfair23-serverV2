@@ -184,15 +184,7 @@ function getViewMatrix(camera) {
     ].flat();
     return camToWorld;
 }
-// function translate4(a, x, y, z) {
-//     return [
-//         ...a.slice(0, 12),
-//         a[0] * x + a[4] * y + a[8] * z + a[12],
-//         a[1] * x + a[5] * y + a[9] * z + a[13],
-//         a[2] * x + a[6] * y + a[10] * z + a[14],
-//         a[3] * x + a[7] * y + a[11] * z + a[15],
-//     ];
-// }
+
 
 function multiply4(a, b) {
     return [
@@ -787,13 +779,6 @@ let defaultViewMatrix = [
 
 let viewMatrix = defaultViewMatrix;
 
-// document.addEventListener('DOMContentLoaded', function() {
-//     main().then(() => {
-//         console.log('Initialization complete');
-//     }).catch(error => {
-//         console.error('Initialization failed:', error);
-//     });}
-// );
 async function main() {
     let carousel = true;
     let start_t = true;
@@ -986,8 +971,6 @@ async function main() {
 
     let activeKeys = [];
 	let currentCameraIndex = 0;
-    let isDragging = false;
-    let angleSensitivity = 0.01;
 
     window.addEventListener("keydown", (e) => {
         // if (document.activeElement != document.body) return;
@@ -1146,7 +1129,6 @@ async function main() {
                 startY = e.touches[0].clientY;
                 down = 1;
             } else if (e.touches.length === 2) {
-                // console.log('beep')
                 carousel = false;
                 startX = e.touches[0].clientX;
                 altX = e.touches[1].clientX;
@@ -1438,7 +1420,6 @@ async function main() {
             camid.innerText = "";
         }
 
-        // New code
         // Update the view matrix uniform with the potentially modified viewMatrix
         gl.uniformMatrix4fv(u_view, false, viewMatrix);
 

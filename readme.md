@@ -183,10 +183,10 @@ server-code
 To visualize the radiance fields, we chose to render them on a website since it's been proven that 3D Gaussian Splats can be rendered on websites in real-time. Upon doing research, we found an open source example from [antimatter15/splat](https://github.com/antimatter15/splat) that used WebGL to implement a real-time renderer. We based the rest of our WebViewer from this (commit at time of forking:`b2cf38c`).
 
 From this, we created a gallery page that would allow the user to quickly preview all 3D Gaussian Splats (shorthand is *splat*) that our server has created. For each splat, we display a title, a link to a webpage that will render the splat (based on the antimatter15 splat project), and a preview image. 
-![Gallery View](documentation_images/gallery.png "Gallery View")
+![Gallery View](documentation_images/gallery.png)
 
 If the user clicks the "Closer Look" text, it will bring them to a webpage that loads the corresponding 3D Gaussian Splat, and the user can use their mouse, keyboard, or trackpad to alter the angle they're viewing the splat.
-![Splat View](documentation_images/splat_view.png "Splat View")
+![Splat View](documentation_images/splat_view.png)
 
 To run the webviewer, you must start the server as described above. 
 
@@ -238,4 +238,4 @@ Here's a description of all the features we have implemented, adding on from the
 2. **Improve UI**: We focused on implementing the core features above, so not much time was spent in making the UI aesthetic. 
 3. **Search bar**: As more splats get added to the database, we may want some way to search for a specific splat or filter for certain splats based on tags we can add to the splats. 
 4. **Save multiple splats and do a side by side comparison**: Before making the webviewer, we did some brainstorming on how we could visualize the splats. This became a stretch goal we weren't able to achieve but one idea we had was to allow the user to save multiple splats (similar to adding to a liked list), and choose 2 to compare side by side. This would allow easier comparison of products. Since we have the suppliers place a bounding box around the objects and we successfully remove most of the background, we can use the bottom plane of the bounding box to act as the "floor" and have the splats vertically aligned to the same ground plane. This would allow us to do things like compare height. Here's a screenshot from the brainstorm.
-![Brainstorm](documentation_images/brainstorm.png "Brainstorm")
+![Brainstorm](documentation_images/brainstorm.png)

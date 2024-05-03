@@ -214,7 +214,8 @@ Here is a high-level description of each file and its relevance to the webviewer
 
 1. `server-code/README.md`: It's this file! This gives a high-level overview of the webviewer, the features we added, any known bugs, and future work. 
 2. `server-code/server.js`: When this file is run, it starts up the webviewer and can be viewed on this link: http://osiris.cs.hmc.edu:15002/webviewer/. This file goes through the database to dynamically make a webpage for each splat and fill the HTML content related to each splat on the gallery page (title, link to webpage that renders splat, preview image, rendered 360 degree video of splat).
-3. `server-code/public/main.js`: This is the javascript code that's running in the background on a page that renders the splat (`index.ejs`). This controls the camera views, the keyboard/mouse controls, and renders the splat (WebGL). 
+3. `server-code/public/main.js`: This is the javascript code that's running in the background on a page that renders the splat (`index.ejs`). This controls the camera views, the keyboard/mouse controls, and renders the splat (WebGL). Note that this is almost identical to the `main.js` from the antimatter project. The only significant changes are where the splat file is being downloaded from and the reset view feature described below. 
+    1. There is a  `main.js` file in the `public/webviewer` folder. This is the original antimatter `main.js` file and it is not used in our server. 
 4. `server-code/public/webviewer/gallery_style.css`: This is the CSS style for the `gallery.ejs` file.
 5. `server-code/public/webviewer/LICENSE`: This is the license from the Antimatter15 project.
 6. `server-code/public/webviewer/README.md`: This has more detailed information on the files in `server-code/public/webviewer/`.
